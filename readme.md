@@ -73,6 +73,9 @@ switch ($request) {
 
 ```
 
+https://database.guide/sql-greater-than-operator-for-beginners/
+
+header("Content-type: application/json; charset=utf-8");
 .htpasswd
 
 .htaccess
