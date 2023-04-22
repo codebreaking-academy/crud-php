@@ -14,9 +14,6 @@ function pdo_connect_mysql()
 	}
 }
 $pdo = pdo_connect_mysql();
-$query = $pdo->prepare('SELECT * FROM categorie');
-$query->execute();
-$categories = $query->fetchAll(PDO::FETCH_ASSOC);
 
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/templates');
 

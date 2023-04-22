@@ -1,9 +1,8 @@
 <?php
 header("Content-type: application/json; charset=utf-8");
 include '../functions.php';
-$pdo = pdo_connect_mysql();
-$query = $pdo->prepare('SELECT a.* , c.type, t.nom as tag FROM categorie c join produits a on c.id = a.categorie_id join tag t  on t.id = a.tag_id ORDER BY id DESC  ');
+$query = $pdo->prepare('SELECT * FROM tags');
 $query->execute();
-$produits = $query->fetchAll(PDO::FETCH_ASSOC);
+$tags = $query->fetchAll(PDO::FETCH_ASSOC);
 
-echo json_encode($produits);
+echo json_encode($tags);
