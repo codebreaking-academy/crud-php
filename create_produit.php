@@ -16,9 +16,19 @@ if (isset($_POST['bouton'])) {
   $description = isset($_POST['description']) ? $_POST['description'] : '';
   $categorie = isset($_POST['categorie']) ? $_POST['categorie'] : '';
   $prix = isset($_POST['prix']) ? $_POST['prix'] : '';
-  $query = $pdo->prepare('INSERT INTO `produits`(`id`,`nom`, `image`, `description`, `prix`, `categorie_id`) VALUES (?,?,?,?,?,?)');
-  $query->execute([$id, $nom, $image, $description, $prix, $categorie]);
+  $tag = isset($_POST['tag']) ? $_POST['tag'] : '';
+  $note = isset($_POST['note']) ? $_POST['note'] : '';
+  $date = isset($_POST['date']) ? $_POST['date'] : '';
+  $query = $pdo->prepare('INSERT INTO `produits`(`id`,`nom`, `image`, `description`, `prix`, `categorie_id`, `tag_id`, `note`, `date_sortie`) VALUES (?,?,?,?,?,?,?,?,?)');
+  $query->execute([$id, $nom, $image, $description, $prix, $categorie, $tag, $note, $date]);
 }
 
+$query = $pdo->prepare('SELECT * FROM categorie');
+$query->execute();
+$categories = $query->fetchAll(PDO::FETCH_ASSOC);
 
-echo $twig->render("create_produit.twig", array("categories" => $categories));
+$query = $pdo->prepare('SELECT * FROM tag');
+$query->execute();
+$tags = $query->fetchAll(PDO::FETCH_ASSOC);
+
+echo $twig->render("create_produit.twig", array("categories" => $categories, "tags" => $tags));

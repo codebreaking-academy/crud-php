@@ -1,12 +1,9 @@
 {% extends "base.twig" %}
+{% block title %}
+	Modifier tag
 
-
-{% block title %}Ajouter une catégorie
 {% endblock %}
-
-
 {% block main %}
-
 	<!-- Conteneur principal -->
 	<div id="mainContainer">
 		<div
@@ -15,39 +12,43 @@
 			<main
 				class="main-content">
 				<!-- En-tête -->
-				<div class="heading">
-					<span class="material-icons">
-						add
-					</span>
-					Ajouter un Catégorie
-				</div>
+				<h2 class="heading">
+					<div>
+						Mettre à jour le tag #
+
+
+						{{tag.id}}
+					</div>
+				</h2>
 				<form
-					action="create_categorie.php" method="post">
+					action="update_tag.php?id={{tag.id}}" method="post">
 					<!-- Contenu -->
 					<div
 						class="content">
-						<!-- Ajout de produit -->
 						<div
 							id="addProductForm" class="product-form">
 							<!-- Nom et type-->
 							<div class="input-row">
 								<div class="input-group">
 									<div class="mb-3">
-										<label for="type">Nom Categorie</label>
-										<input type="text" name="type" class="form-control" required/>
+										<label for="tag">
+											Nom Tag
+
+
+										</label>
+										<input type="text" name="tag" class="form-control" value="{{tag.tag}}" required/>
 									</div>
 								</div>
 							</div>
-							<input type="submit" value="Crée" class="validate-button">
-						</div>
+							<input type="submit" value="Modifier" class="validate-button"></div>
 					</div>
 				</form>
 			</br>
 			<!-- Message de sortie -->
 			{% if msg %}
-				<h5>{{msg}}</h5>
+				<h5>
+					{{ msg }}
+				</h5>
 			{% endif %}
-		</main>
-	</div>
-
-{% endblock %}
+		</div>
+	{% endblock %}

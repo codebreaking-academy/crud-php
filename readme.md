@@ -97,4 +97,10 @@ https://www.web2generators.com/apache-tools/htpasswd-generator
 
 ```
 
+```php
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST');
+header("Access-Control-Allow-Headers: X-Requested-With");
 ```
+
+https://dev.to/zahab/5-ways-to-fetch-api-data-in-react-js-3pfk#1--fetch-data-in-react-using-the-fetch-api

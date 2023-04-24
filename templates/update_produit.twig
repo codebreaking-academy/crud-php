@@ -55,6 +55,26 @@
 											</select>
 										</div>
 									</div>
+									<div class="mb-3">
+									<label for="note">Note du produit</label>
+									<input type="number" name="note" placeholder="10" id="note" value={{produit.note}} required />
+								</div>
+
+								<div class="mb-3">
+									<label for="date">Date de sortie</label>
+									<input type="date" name="date" id="date" value={{produit.date_sortie}} required />
+								</div>
+
+
+								<div class="col-md-4">
+									<label for="tag" class="form-label">Nom Tag</label>
+									<select class="form-select" name="tag" required aria-label="Default select example">
+										<option selected>Choisir un tag</option>
+										{% for tag in tags %}
+										<option value="{{tag.id}}" {{ tag.id is same as produit.tag_id ? "selected" : "" }}>{{tag.tag}}</option>
+										{% endfor %}
+									</select>
+								</div>
 								</div>
 							</div>
 							<!-- Bouton -->
