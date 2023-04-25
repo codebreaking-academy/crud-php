@@ -11,4 +11,4 @@ $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $num_tag = $pdo->query('SELECT COUNT(*) FROM tag')->fetchColumn();
 
 
-echo $twig->render("read_tag.twig", array("tags" => $tags, "records_per_page" => $records_per_page, "page" => $page, "num_tag" => $num_tag));
+echo $twig->render("read_tag.twig", array("url" => $_SERVER["REQUEST_URI"], "tags" => $tags, "records_per_page" => $records_per_page, "page" => $page, "num_tag" => $num_tag));

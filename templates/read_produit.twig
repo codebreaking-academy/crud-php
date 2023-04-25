@@ -1,0 +1,50 @@
+{% extends "base.twig" %}
+
+
+{% block title %}Afficher produits
+{% endblock %}
+
+{% block main %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+	<h1 class="h2">Produits</h1>
+	<div class="btn-toolbar mb-2 mb-md-0">
+		<div class="btn-group me-2">
+			<a class="btn btn-sm btn-outline-secondary" href="create_produit.php">Ajouter un produit</a>
+		</div>
+	</div>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Image</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Description</th>
+      <th scope="col">Catégorie</th>
+      <th scope="col">Tag</th>
+      <th scope="col">Prix</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+	{% for produit in produits %}
+		<tr>
+		<th scope="row">{{ produit.id }}</th>
+		<td><img src="./images/{{ produit.image }}" width="150px" height="200px" class="card-img-top" alt="..." /></td>
+		<td>{{ produit.nom }}</td>
+		<td class="text-truncate">{{ produit.description }}</td>
+		<td>{{ produit.type }}</td>
+		<td>{{ produit.tag }}</td>
+		<td>{{ produit.prix }} €</td>
+		<td>
+			<div class="btn-group me-2">
+			<a class="btn btn-sm btn-primary" href="update_produit.php?id={{ produit.id }}">Modifier</a>
+			<a class="btn btn-sm btn-danger" href="delete_produit.php?id={{ produit.id }}">Supprimer</a>
+			</div>
+		</td>
+		</tr>
+    {% endfor %}
+  </tbody>
+</table>
+						
+{% endblock %}

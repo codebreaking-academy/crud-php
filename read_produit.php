@@ -9,4 +9,4 @@ $query = $pdo->prepare('SELECT * FROM categorie');
 $query->execute();
 $categories = $query->fetchAll(PDO::FETCH_ASSOC);
 
-echo $twig->render("index.twig", array("url" => $_SERVER["REQUEST_URI"]));
+echo $twig->render("read_produit.twig", array("url" => $_SERVER["REQUEST_URI"], "produits" => $produits, "categories" => $categories));

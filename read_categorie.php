@@ -11,4 +11,4 @@ $categs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $num_categorie = $pdo->query('SELECT COUNT(*) FROM categorie')->fetchColumn();
 
 
-echo $twig->render("read_categorie.twig", array("categories" => $categs, "records_per_page" => $records_per_page, "page" => $page, "num_categorie" => $num_categorie));
+echo $twig->render("read_categorie.twig", array("url" => $_SERVER["REQUEST_URI"], "categories" => $categs, "records_per_page" => $records_per_page, "page" => $page, "num_categorie" => $num_categorie));

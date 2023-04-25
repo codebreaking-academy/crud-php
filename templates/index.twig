@@ -6,49 +6,19 @@
 
 
 {% block main %}
-	<div
-		class="content">
-		<!-- Conteneur principal -->
-		<div id="mainContainer">
-			<div
-				class="form">
-				<!-- Contenu principal -->
-				<main
-					class="main-content">
-					<!-- En-tête -->
-					<div class="heading">
-						Affichage produit
-					</div>
-
-					<div class="content read">
-						<a href="create_produit.php" class="create-contact">Ajouter un produit</a>
-						<div class="container">
-							<br>
-							<div class="row">
-
-
-								{% for produit in produits %}
-									<div class="col-4 mb-5">
-										<div class="card" style="width: 18rem;">
-											<img src="./images/{{ produit.image }}" width="150px" height="200px" class="card-img-top" alt="...">
-											<div class="card-body">
-												<center>
-													<h5 class="card-title">{{ produit.nom }}</h5>
-													<p class="card-text text-truncate">{{ produit.description }}</p>
-													<p class="card-text">{{ produit.type }}</p>
-													<p class="card-text">{{ produit.prix }}
-														Euro</p>
-													<a href="update_produit.php?id={{ produit.id }}" class="btn btn-warning">Modifier</a>
-													<a href="delete_produit.php?id={{ produit.id }}" class="btn btn-danger">Supprimer</a>
-												</center>
-
-											</div>
-										</div>
-									</div>
-								{% endfor %}
-							</div>
-
-						</div>
-
-
-					{% endblock %}
+<div class="px-4 pt-5 my-5 text-center border-bottom">
+<h1 class="display-4 fw-bold text-body-emphasis">Instant Gaming CMS</h1>
+<div class="col-lg-6 mx-auto">
+	<p class="lead mb-4">Bienvenue sur l'outil de gestion de contenu de la boutique Instant Gaming. Instant gaming est un magasin de clés, qui permet de se procurer des jeux à des prix imbattables.</p>
+	<div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+	<button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Voir les produits</button>
+	<button type="button" class="btn btn-outline-secondary btn-lg px-4">Voir les catégories</button>
+	</div>
+</div>
+<div class="overflow-hidden" style="max-height: 30vh;">
+	<div class="container px-5">
+	<img src="bootstrap-docs.png" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy">
+	</div>
+</div>
+</div>
+{% endblock %}
