@@ -4,52 +4,24 @@
 
 {% endblock %}
 {% block main %}
-	<!-- Conteneur principal -->
-	<div id="mainContainer">
-		<div
-			class="form">
-			<!-- Contenu principal -->
-			<main
-				class="main-content">
-				<!-- En-tête -->
-				<h2 class="heading">
-					<div>
-						Mettre à jour le produit #
-
-
-						{{produit.id}}
-					</div>
-				</h2>
-				<form
-					action="update_categorie.php?id={{produit.id}}" method="post">
-					<!-- Contenu -->
-					<div
-						class="content">
-						<!-- Ajout de produit -->
-						<div
-							id="addProductForm" class="product-form">
-							<!-- Nom et type-->
-							<div class="input-row">
-								<div class="input-group">
-									<div class="mb-3">
-										<label for="type">
-											Nom Categorie
-
-
-										</label>
-										<input type="text" name="type" class="form-control" value="{{produit.type}}" required/>
-									</div>
-								</div>
-							</div>
-							<input type="submit" value="Modifier" class="validate-button"></div>
-					</div>
-				</form>
-			</br>
-			<!-- Message de sortie -->
-			{% if msg %}
-				<h5>
-					{{ msg }}
-				</h5>
-			{% endif %}
+	<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+		<h1 class="h2">Mettre à jour la catégorie #{{produit.id}}</h1>
+		<div class="btn-toolbar mb-2 mb-md-0">
+			<a class="btn btn-sm btn-outline-secondary" href="read_categorie.php">
+				<i class="bi bi-arrow-left"></i>
+				Retour à la liste des catégories</a>
 		</div>
-	{% endblock %}
+	</div>
+	{% if msg %}
+		<div class="alert alert-success" role="alert">{{ msg }}</div>
+	{% else %}
+		<form action="update_categorie.php?id={{produit.id}}" method="post">
+			<div class="mb-3">
+				<label for="type" class="form-label">Nom de la catégorie</label>
+				<input type="text" class="form-control" id="type" aria-describedby="categoryTypeHelp" name="type" value="{{produit.type}}" required/>
+				<div id="categoryTypeHelp" class="form-text">Saisir un nom de catégorie.</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Ajouter</button>
+		</form>
+	{% endif %}
+{% endblock %}

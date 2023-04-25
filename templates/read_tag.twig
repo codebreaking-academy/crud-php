@@ -1,55 +1,68 @@
 {% extends "base.twig" %}
 
 
-{% block title %}Afficher tags
+{% block title %}Tags
 {% endblock %}
 
+{% set nbPages = num_tag // records_per_page %}
 
 {% block main %}
-	<div class="content read">
-		<a href="create_tag.php" class="create-contact">Ajouter Tag
-		</a>
-		<table>
-			<thead>
-				<tr>
-					<td>#</td>
-					<td>Tag</td>
-					<td></td>
-				</tr>
-			</thead>
-			<tbody>
-				{% for tag in tags %}
-
-					<tr>
-						<td>{{tag.id}}</td>
-						<td>
-							{{tag.tag}}</td>
-						<td class="actions">
-							<a href="update_tag.php?id={{tag.id}}" class="edit">
-								<i class="fas fa-pen fa-xs"></i>
-							</a>
-							<a href="delete_tag.php?id={{tag.id}}" class="trash">
-								<i class="fas fa-trash fa-xs"></i>
-							</a>
-						</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-		<div class="pagination">
-			{% if page > 1 %}
-
-				<a href="read_tag.php?page={{ page - 1 }}">
-					<i class="fas fa-angle-double-left fa-sm"></i>
-				</a>
-			{% endif %}
-
-			{% if page * records_per_page < num_tag %}
-				<a href="read_tag.php?page={{ page + 1 }}">
-					<i class="fas fa-angle-double-right fa-sm"></i>
-				</a>
-			{% endif %}
-
+	<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+		<h1 class="h2">Tags</h1>
+		<div class="btn-toolbar mb-2 mb-md-0">
+			<div class="btn-group me-2">
+				<a class="btn btn-sm btn-outline-secondary" href="create_tag.php">Ajouter un tag</a>
+			</div>
 		</div>
 	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Nom</th>
+				<th scope="col">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for tag in tags %}
+				<tr>
+					<th scope="row">{{ tag.id }}</th>
+					<td>{{ tag.tag }}</td>
+					<td>
+						<div class="btn-group me-2">
+							<a class="btn btn-sm btn-outline-primary" href="update_tag.php?id={{tag.id}}">Modifier</a>
+							<a class="btn btn-sm btn-outline-danger" href="delete_tag.php?id={{tag.id}}">Supprimer</a>
+						</div>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<nav aria-label="Navigation catégories">
+		<ul class="pagination">
+			{% if page > 1 %}
+				<li class="page-item">
+					<a class="page-link" href="read_tag.php?page={{ page - 1 }}" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
+			{% endif %}
+
+			{% for i in 1..nbPages + 1 %}
+				<li class="page-item">
+					<a class="page-link" href="read_tag.php?page={{ i }}">{{ i }}</a>
+				</li>
+			{% endfor %}
+
+			{% if page * records_per_page < num_tag %}
+				<li class="page-item">
+					<a class="page-link" href="read_tag.php?page={{ page + 1 }}" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+			{% endif %}
+		</ul>
+	</nav>
 {% endblock %}

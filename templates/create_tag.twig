@@ -6,48 +6,24 @@
 
 
 {% block main %}
-
-	<!-- Conteneur principal -->
-	<div id="mainContainer">
-		<div
-			class="form">
-			<!-- Contenu principal -->
-			<main
-				class="main-content">
-				<!-- En-tête -->
-				<div class="heading">
-					<span class="material-icons">
-						add
-					</span>
-					Ajouter un Tag
-				</div>
-				<form
-					action="create_tag.php" method="post">
-					<!-- Contenu -->
-					<div
-						class="content">
-						<!-- Ajout de produit -->
-						<div
-							id="addProductForm" class="product-form">
-							<!-- Nom et type-->
-							<div class="input-row">
-								<div class="input-group">
-									<div class="mb-3">
-										<label for="tag">Nom Tag</label>
-										<input type="text" name="tag" class="form-control" required/>
-									</div>
-								</div>
-							</div>
-							<input type="submit" value="Crée" class="validate-button">
-						</div>
-					</div>
-				</form>
-			</br>
-			<!-- Message de sortie -->
-			{% if msg %}
-				<h5>{{msg}}</h5>
-			{% endif %}
-		</main>
+	<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+		<h1 class="h2">Ajouter un tag</h1>
+		<div class="btn-toolbar mb-2 mb-md-0">
+			<a class="btn btn-sm btn-outline-secondary" href="read_tag.php">
+				<i class="bi bi-arrow-left"></i>
+				Retour à la liste des tags</a>
+		</div>
 	</div>
-
+	{% if msg %}
+		<div class="alert alert-success" role="alert">{{ msg }}</div>
+	{% else %}
+		<form action="create_tag.php" method="post">
+			<div class="mb-3">
+				<label for="tag" class="form-label">Nom du tag</label>
+				<input type="text" class="form-control" id="tag" aria-describedby="tagHelp" required/>
+				<div id="tagHelp" class="form-text">Saisir un nom de tag.</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Ajouter</button>
+		</form>
+	{% endif %}
 {% endblock %}

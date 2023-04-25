@@ -15,10 +15,10 @@ if (isset($_GET['id'])) {
     $nom = $_POST['nom'];
     $description = $_POST['description'];
     $prix = $_POST['prix'];
-    $categorie = $_POST['categorie']; 
-	$tag = isset($_POST['tag']) ? $_POST['tag'] : '';
-	$note = isset($_POST['note']) ? $_POST['note'] : '';
-	$date = isset($_POST['date']) ? $_POST['date'] : '';
+    $categorie = $_POST['categorie'];
+    $tag = isset($_POST['tag']) ? $_POST['tag'] : '';
+    $note = isset($_POST['note']) ? $_POST['note'] : '';
+    $date = isset($_POST['date']) ? $_POST['date'] : '';
 
     if (!empty($_FILES['image']['name'])) {
       unlink('images/' . $produit['image']);
@@ -33,15 +33,17 @@ if (isset($_GET['id'])) {
       $query = $pdo->prepare("UPDATE `produits` SET `nom`= '$nom' , `description`= '$description' ,`prix`= '$prix' , `categorie_id`= '$categorie', `tag_id` = '$tag', `note` = '$note', `date_sortie`  = '$date' WHERE `id`= ? ");
     }
     $query->execute([$id]);
+
+    header('location:read_produit.php');
   }
 
   $query = $pdo->prepare('SELECT * FROM categorie');
-$query->execute();
-$categories = $query->fetchAll(PDO::FETCH_ASSOC);
+  $query->execute();
+  $categories = $query->fetchAll(PDO::FETCH_ASSOC);
 
-$query = $pdo->prepare('SELECT * FROM tag');
-$query->execute();
-$tags = $query->fetchAll(PDO::FETCH_ASSOC);
+  $query = $pdo->prepare('SELECT * FROM tag');
+  $query->execute();
+  $tags = $query->fetchAll(PDO::FETCH_ASSOC);
 
 
   echo $twig->render("update_produit.twig", array("produit" => $produit, "categories" => $categories, "tags" => $tags));
